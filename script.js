@@ -1,20 +1,28 @@
 "use strict";
 
 const gameBoard = (() => {
-  const x = 'X';
-  const o = 'O';
-  const board = [x, o, x,
-                 o, x, o,
-                 o, o, x];
-  function displayBoard() {
+  
+  function addOMark(square) {
+    square.textContent = 'O';
+  }
+
+  function addXMark(square) {
+    square.textContent = 'X';
+  }
+
+  function newBoard() {
     let container = document.querySelector('div.container');
-    for (let square of board) {
-      const mark = document.createElement('div');
-      mark.textContent = square;
-      container.appendChild(mark);
+    container.innerHTML = '';
+    for (let i = 0; i < 9; i++) {
+      const square = document.createElement('div');
+      square.addEventListener('click', () => addOMark(square));
+      square.addEventListener('contextmenu', () => addXMark(square));
+      window.addEventListener('contextmenu', e => e.preventDefault());
+      container.appendChild(square);
     }
   }
-  return {displayBoard};
+  
+  return {newBoard};
 })();
 
 (function flowControl() {
@@ -26,3 +34,7 @@ function Player() {
   
   return {};
 }
+
+const newBoardButton = document.querySelector('button.new-board');
+newBoardButton.addEventListener('click', gameBoard.newBoard);
+gameBoard.newBoard();

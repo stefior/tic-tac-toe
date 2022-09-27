@@ -5,7 +5,9 @@
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 div.container {
@@ -21,4 +23,9 @@ div.container > div {
   justify-content: center;
   align-items: center;
   font-size: 2rem;
+}
+
+button.new-board {
+  margin: 15px auto;
+  padding: 3px 15px;
 }
