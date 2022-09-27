@@ -18,7 +18,6 @@ const gameBoard = (() => {
 
   function updateBoardArr(square, mark) {
     boardArr[Array.from(container.childNodes).indexOf(square)] = mark;
-    console.log(boardArr);
   }
 
   function addOMark(square) {
@@ -38,15 +37,10 @@ const gameBoard = (() => {
   }
 
   function checkWin() {
-    console.log(container.textContent);
+    
   }
   
   return {newBoard};
-})();
-
-(function flowControl() {
-  
-  return {};
 })();
 
 function Player() {
