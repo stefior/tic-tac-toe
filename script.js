@@ -3,11 +3,11 @@
 const gameBoard = (() => {
   
   function addOMark(square) {
-    square.textContent = 'O';
+    if (square.textContent === '') square.textContent = 'O';
   }
 
   function addXMark(square) {
-    square.textContent = 'X';
+    if (square.textContent === '') square.textContent = 'X';
   }
 
   function newBoard() {
