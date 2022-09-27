@@ -2,11 +2,13 @@
 
 const gameBoard = (() => {
   const container = document.querySelector('div.container');
+  const resultPara = document.querySelector('p.result-display');
   let boardArr = [];
   let lastMark = 'O';
 
   function newBoard() {
     container.innerHTML = '';
+    resultPara.textContent = '';
     boardArr = ['', '', '', '', '', '', '', '', ''];
     for (let i = 0; i < 9; i++) {
       const square = document.createElement('div');
@@ -30,7 +32,7 @@ const gameBoard = (() => {
       updateBoardArr(square, 'X');
       lastMark = 'X';
     }
-    setTimeout(checkWin, 1000);
+    checkWin();
   }
 
   function checkWin() {
@@ -51,14 +53,13 @@ const gameBoard = (() => {
       // diagonal wins
           (b[0] === b[4] && b[4] === b[8] && b[8] !== '') ||
           (b[6] === b[4] && b[4] === b[2] && b[2] !== '')) return true;
-
-      if (b.indexOf('') < 0) return 'tie';
+      else if (b.indexOf('') < 0) return 'tie';
 
       return false;
     })();
     
-    if (result === 'tie') alert('tie');
-    else if (result) alert(`${lastMark} wins`);
+    if (result === 'tie') resultPara.textContent = 'tie';
+    else if (result) resultPara.textContent = `${lastMark} wins`;
   }
   
   return {newBoard};

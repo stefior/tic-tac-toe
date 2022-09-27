@@ -29,3 +29,7 @@ button.new-board {
   margin: 15px auto;
   padding: 3px 15px;
 }
+
+p.result-display {
+  margin-top: 20px;
+}
