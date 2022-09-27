@@ -3,16 +3,14 @@
 const gameBoard = (() => {
   const container = document.querySelector('div.container');
   let boardArr = [];
-  let lastMark = '';
+  let lastMark = 'O';
 
   function newBoard() {
     container.innerHTML = '';
     boardArr = ['', '', '', '', '', '', '', '', ''];
     for (let i = 0; i < 9; i++) {
       const square = document.createElement('div');
-      square.addEventListener('click', () => addOMark(square));
-      square.addEventListener('contextmenu', () => addXMark(square));
-      window.addEventListener('contextmenu', e => e.preventDefault());
+      square.addEventListener('click', () => addMark(square));
       container.appendChild(square);
     }
   }
@@ -21,17 +19,14 @@ const gameBoard = (() => {
     boardArr[Array.from(container.childNodes).indexOf(square)] = mark;
   }
 
-  function addOMark(square) {
-    if (square.textContent === '' && lastMark !== 'O') {
+  function addMark(square) {
+    if (square.textContent === '' && lastMark === 'X') {
       square.textContent = 'O';
       updateBoardArr(square, 'O');
       lastMark = 'O';
       checkWin();
     }
-  }
-
-  function addXMark(square) {
-    if (square.textContent === '' && lastMark !== 'X') {
+    else if (square.textContent === '' && lastMark === 'O') {
       square.textContent = 'X';
       updateBoardArr(square, 'X');
       lastMark = 'X';
