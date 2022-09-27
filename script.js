@@ -3,6 +3,7 @@
 const gameBoard = (() => {
   const container = document.querySelector('div.container');
   let boardArr = [];
+  let lastMark = '';
 
   function newBoard() {
     container.innerHTML = '';
@@ -21,17 +22,19 @@ const gameBoard = (() => {
   }
 
   function addOMark(square) {
-    if (square.textContent === '') {
+    if (square.textContent === '' && lastMark !== 'O') {
       square.textContent = 'O';
       updateBoardArr(square, 'O');
+      lastMark = 'O';
       checkWin();
     }
   }
 
   function addXMark(square) {
-    if (square.textContent === '') {
+    if (square.textContent === '' && lastMark !== 'X') {
       square.textContent = 'X';
       updateBoardArr(square, 'X');
+      lastMark = 'X';
       checkWin();
     }
   }
